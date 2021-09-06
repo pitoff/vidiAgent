@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Property;
 use app\Router;
 
 class PropertyController{
@@ -13,7 +14,45 @@ class PropertyController{
 
     public function create(Router $router)
     {
-        $router->renderView('property/create');
+        $errors = [];
+
+        $propertyData = [
+            'image' => '',
+            'type' => '',
+            'for' => '',
+            'name' => '',
+            'description' => '',
+            'price' => '',
+            'bedroom' => '',
+            'toilet' => '',
+            'kitchen' => ''
+        ];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $propertyData['imageFile'] = $_FILES['image'] ?? null;
+            $propertyData['type'] = $_POST['type'];
+            $propertyData['for'] = $_POST['for'];
+            $propertyData['name'] = $_POST['name'];
+            $propertyData['description'] = $_POST['description'];
+            $propertyData['price'] = $_POST['price'];
+            $propertyData['bedroom'] = $_POST['bedroom'];
+            $propertyData['toilet'] = $_POST['toilet'];
+            $propertyData['kitchen'] = $_POST['kitchen'];
+
+            $property = new Property();
+            $property->load($propertyData);
+            $errors = $property->validate();
+
+            if(empty($errors)){
+                header('Location: /admin/property');
+            }
+        }
+
+        $router->renderView('property/create', [
+            'property' => $propertyData,
+            'errors' => $errors
+        ]);
     }
 
     public function show()
