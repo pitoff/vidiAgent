@@ -22,6 +22,8 @@ class PropertyController{
             'for' => '',
             'name' => '',
             'description' => '',
+            'state' => '',
+            'local_govt' => '',
             'price' => '',
             'bedroom' => '',
             'toilet' => '',
@@ -35,6 +37,8 @@ class PropertyController{
             $propertyData['for'] = $_POST['for'];
             $propertyData['name'] = $_POST['name'];
             $propertyData['description'] = $_POST['description'];
+            $propertyData['state'] = $_POST['state'];
+            $propertyData['local_govt'] = $_POST['local_govt'];
             $propertyData['price'] = $_POST['price'];
             $propertyData['bedroom'] = $_POST['bedroom'];
             $propertyData['toilet'] = $_POST['toilet'];

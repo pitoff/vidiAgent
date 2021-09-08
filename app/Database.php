@@ -36,11 +36,13 @@ class Database
 
     public function addProperty(Property $property)
     {
-        $statement = $this->pdo->prepare("INSERT INTO properties (property, p_type, p_for, image, description, price, bedroom, toilet, kitchen)
-        VALUES (:property, :p_type, :p_for, :image, :description, :price, :bedroom, :toilet, :kitchen)");
+        $statement = $this->pdo->prepare("INSERT INTO properties (property, p_type, p_for, state, local_govt, image, description, price, bedroom, toilet, kitchen)
+        VALUES (:property, :p_type, :p_for, :state, :local_govt, :image, :description, :price, :bedroom, :toilet, :kitchen)");
         $statement->bindValue(':property', $property->name);
         $statement->bindValue(':p_type', $property->type);
         $statement->bindValue(':p_for', $property->for);
+        $statement->bindValue(':state', $property->state);
+        $statement->bindValue(':local_govt', $property->local_govt);
         $statement->bindValue(':image', $property->imagePath);
         $statement->bindValue(':description', $property->description);
         $statement->bindValue(':price', $property->price);
