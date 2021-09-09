@@ -34,6 +34,14 @@ class Database
         }
     }
 
+    public function getAllProperty()
+    {
+        $statement = $this->pdo->prepare('SELECT * FROM properties ORDER BY id DESC');
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_OBJ);
+
+    }
+
     public function addProperty(Property $property)
     {
         $statement = $this->pdo->prepare("INSERT INTO properties (property, p_type, p_for, state, local_govt, image, description, price, bedroom, toilet, kitchen)

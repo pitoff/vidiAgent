@@ -9,7 +9,10 @@ class PropertyController{
 
     public function properties(Router $router)
     {
-        $router->renderView('property/property');
+        $property = $router->db->getAllProperty();
+        $router->renderView('property/property', [
+            'properties' => $property
+        ]);
     }
 
     public function create(Router $router)

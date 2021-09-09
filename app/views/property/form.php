@@ -13,7 +13,7 @@
               </div>
 
               <div class="form-group">Property type:
-                <select name="type" id="" class="form-control">
+                <select name="type" id="" value="" class="form-control">
                     <option value="Land">Land</option>
                     <option value="House">House</option>
                     <option value="Hotel">Hotel</option>
@@ -21,7 +21,7 @@
               </div>
 
               <div class="form-group">Property For:
-                <select name="for" id="" class="form-control">
+                <select name="for" id="" value="" class="form-control">
                     <option value="sale">Sale</option>
                     <option value="rent">Rent</option>
                 </select>
@@ -31,7 +31,7 @@
                 <input type="name" name="name" class="form-control" placeholder="Property Name">
               </div>
               <div class="form-group">
-                <select name="state" id="state" onchange="toggleLGA(this)" class="form-control">
+                <select name="state" id="state" value="" onchange="toggleLGA(this)" class="form-control">
                 <option value="" selected="selected">- State -</option>
                   <option value="Abia">Abia</option>
                   <option value="Adamawa">Adamawa</option>
@@ -73,24 +73,24 @@
                 </select>
               </div>
               <div class="form-group">
-                <select name="local_govt" id="lga" class="form-control lga-select">
+                <select name="local_govt" id="lga" value="" class="form-control lga-select">
 
                 </select>
               </div>
               <div class="form-group">
-                <textarea name="description" id="" cols="30" rows="5" class="form-control" placeholder="Description"></textarea>
+                <textarea name="description" id="" cols="30" rows="5" class="form-control" placeholder="Description"><??></textarea>
               </div>
               <div class="form-group">
-                <input type="text" name="price" class="form-control" placeholder="Price">
+                <input type="text" name="price" class="form-control" value="" placeholder="Price">
               </div>
               <div class="form-group">
-                <input type="number" name="bedroom" class="form-control" placeholder="Bedroom">
+                <input type="number" name="bedroom" class="form-control" value="" placeholder="Bedroom">
               </div>
               <div class="form-group">
-                <input type="number" name="toilet" class="form-control" placeholder="Toilet">
+                <input type="number" name="toilet" class="form-control" value="" placeholder="Toilet">
               </div>
               <div class="form-group">
-                <input type="number" name="kitchen" class="form-control" placeholder="Kitchen">
+                <input type="number" name="kitchen" class="form-control" value="" placeholder="Kitchen">
               </div>
               <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
