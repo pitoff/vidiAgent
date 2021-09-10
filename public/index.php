@@ -21,9 +21,9 @@ $router->post('/admin/login', [AdminController::class, 'login']);
 $router->get('/admin/property', [PropertyController::class, 'properties']);
 $router->get('/admin/createproperty', [PropertyController::class, 'create']);
 $router->post('/admin/createproperty', [PropertyController::class, 'create']);
-$router->get('/admin/updateproperty/{$id}', [PropertyController::class, 'update']);
-$router->post('/admin/updateproperty/{$id}', [PropertyController::class, 'update']);
-$router->get('/admin/removeproperty', [PropertyController::class, 'remove']);
+$router->get('/admin/updateproperty', [PropertyController::class, 'update']);
+$router->post('/admin/updateproperty', [PropertyController::class, 'update']);
+$router->post('/admin/removeproperty', [PropertyController::class, 'remove']);
 $router->get('/logout', [AdminController::class, 'logout']);
 
 $router->run();

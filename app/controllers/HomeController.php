@@ -23,7 +23,10 @@ class HomeController{
 
     public function listing(Router $router)
     {
-        $router->renderView('home/listing');
+        $property = $router->db->getAllProperty();
+        $router->renderView('home/listing', [
+            'properties' => $property
+        ]);
     }
 
     public function contact(Router $router)

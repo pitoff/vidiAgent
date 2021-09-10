@@ -42,15 +42,24 @@ class Database
 
     }
 
+    public function getPropertyById($id)
+    {
+        $statement = $this->pdo->prepare('SELECT * FROM properties WHERE id = :id');
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_OBJ);
+    }
+
     public function addProperty(Property $property)
     {
-        $statement = $this->pdo->prepare("INSERT INTO properties (property, p_type, p_for, state, local_govt, image, description, price, bedroom, toilet, kitchen)
-        VALUES (:property, :p_type, :p_for, :state, :local_govt, :image, :description, :price, :bedroom, :toilet, :kitchen)");
+        $statement = $this->pdo->prepare("INSERT INTO properties (property, p_type, p_for, state, local_govt, address, image, description, price, bedroom, toilet, kitchen)
+        VALUES (:property, :p_type, :p_for, :state, :local_govt, :address, :image, :description, :price, :bedroom, :toilet, :kitchen)");
         $statement->bindValue(':property', $property->name);
         $statement->bindValue(':p_type', $property->type);
         $statement->bindValue(':p_for', $property->for);
         $statement->bindValue(':state', $property->state);
         $statement->bindValue(':local_govt', $property->local_govt);
+        $statement->bindValue(':address', $property->address);
         $statement->bindValue(':image', $property->imagePath);
         $statement->bindValue(':description', $property->description);
         $statement->bindValue(':price', $property->price);
@@ -61,7 +70,13 @@ class Database
         $statement->execute();
     }
 
+    public function updateProperty()
+    {
+
+    }
+
     public function removeProperty()
     {
+
     }
 }

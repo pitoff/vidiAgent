@@ -15,6 +15,7 @@ class Property{
     public string $price;
     public string $state;
     public string $local_govt;
+    public string $address;
     public ?string $bedroom = null;
     public ?string $toilet = null;
     public ?string $kitchen = null;
@@ -29,6 +30,7 @@ class Property{
         $this->name = $data['name'];
         $this->state = $data['state'];
         $this->local_govt = $data['local_govt'];
+        $this->address = $data['address'];
         $this->description = $data['description'];
         $this->price = $data['price'];
         $this->bedroom = $data['bedroom'] ?? null;
@@ -56,6 +58,9 @@ class Property{
         }
         if(!$this->local_govt){
             $errors[] = "local government is required";
+        }
+        if(!$this->address){
+            $errors[] = "address is required";
         }
         if(!$this->description){
             $errors[] = "description is required";

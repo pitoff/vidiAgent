@@ -78,7 +78,10 @@
                 </select>
               </div>
               <div class="form-group">
-                <textarea name="description" id="" cols="30" rows="5" class="form-control" placeholder="Description"><??></textarea>
+                <input type="text" name="address" class="form-control" value="" placeholder="Address">
+              </div>
+              <div class="form-group">
+                <textarea name="description" id="" cols="30" rows="5" class="form-control" placeholder="Description"><?= $property->description;?></textarea>
               </div>
               <div class="form-group">
                 <input type="text" name="price" class="form-control" value="" placeholder="Price">

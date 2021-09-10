@@ -25,15 +25,19 @@
         					
                             <?php if(loggedIn()):?>
         					<div class="tooltip-wrap d-flex">
-        						<a href="#" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Edit">
+        						<a href="/admin/updateproperty?id=<?= $property->id; ?>" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Edit">
         							<span class="ion-ios-book"><i class="sr-only">Edit</i></span>
         						</a>
                                 <a href="#" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="View">
         							<span class="ion-ios-eye"><i class="sr-only">View</i></span>
         						</a>
-        						<a href="#" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Remove">
-        							<span class="ion-ios-trash"><i class="sr-only">Remove</i></span>
-        						</a>
+
+                                <form method="POST", action="/admin/removeproperty">
+                                    <a type=submit class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Remove">
+                                        <input type="hidden" value="<?= $property->id;?>">
+                                        <span class="ion-ios-trash"><i class="sr-only">Remove</i></span>
+                                    </a>
+                                </form>
         					</div>
                             <?php else:?>
                                 <div class="tooltip-wrap d-flex">
@@ -43,13 +47,13 @@
         						
         					    </div>
                             <?php endif;?>
-                            
+
         				</div>
         			</div>
         			<div class="text">
         				<p class="price mb-3"><span class="orig-price">#<?php echo number_format($property->price, 2); ?></span></p>
         				<h3 class="mb-0"><a href="properties-single.html"><?= $property->property;?></a></h3>
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i><?= $property->state;?></span>
+        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i><?= $property->address;?></span>
         				<ul class="property_list">
         					<li><span class="flaticon-bed"></span><?=$property->bedroom;?></li>
         					<li><span class="flaticon-bathtub"></span><?= $property->toilet;?></li>
