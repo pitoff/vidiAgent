@@ -48,7 +48,7 @@ class PropertyController{
             $propertyData['name'] = $_POST['name'];
             $propertyData['description'] = $_POST['description'];
             $propertyData['state'] = $_POST['state'];
-            $propertyData['local_govt'] = $_POST['local_govt'];
+            $propertyData['local_govt'] = $_POST['local_govt'] ?? '';
             $propertyData['address'] = $_POST['address'];
             $propertyData['price'] = $_POST['price'];
             $propertyData['bedroom'] = $_POST['bedroom'];
@@ -72,59 +72,64 @@ class PropertyController{
 
     public function show()
     {
-        if(!loggedIn()){
-            header('location:/admin/login');
-        }
+        
     }
 
     public function update(Router $router)
     {
-        // if(!loggedIn()){
-        //     header('location:/admin/login');
-        // }
+        if(!loggedIn()){
+            header('location:/admin/login');
+        }
 
-        // $id = $_GET['id'] ?? null;
-        // if(!$id){
-        //     header('location: /admin/property');
-        // }
+        $id = $_GET['id'] ?? null;
+        if(!$id){
+            header('location: /admin/property');
+        }
 
-        // $propertyData = $router->db->getPropertyById($id);
-        // $errors = [];
+        $propertyData = $router->db->getPropertyById($id);
+        $errors = [];
 
-        // if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-        //     $propertyData['imageFile'] = $_FILES['image'] ?? null;
-        //     $propertyData['type'] = $_POST['type'];
-        //     $propertyData['for'] = $_POST['for'];
-        //     $propertyData['name'] = $_POST['name'];
-        //     $propertyData['description'] = $_POST['description'];
-        //     $propertyData['state'] = $_POST['state'];
-        //     $propertyData['local_govt'] = $_POST['local_govt'];
-        //     $propertyData['address'] = $_POST['address'];
-        //     $propertyData['price'] = $_POST['price'];
-        //     $propertyData['bedroom'] = $_POST['bedroom'];
-        //     $propertyData['toilet'] = $_POST['toilet'];
-        //     $propertyData['kitchen'] = $_POST['kitchen'];
+            $propertyData['imageFile'] = $_FILES['image'] ?? null;
+            $propertyData['type'] = $_POST['type'];
+            $propertyData['for'] = $_POST['for'];
+            $propertyData['name'] = $_POST['name'];
+            $propertyData['description'] = $_POST['description'];
+            $propertyData['state'] = $_POST['state'];
+            $propertyData['local_govt'] = $_POST['local_govt'];
+            $propertyData['address'] = $_POST['address'];
+            $propertyData['price'] = $_POST['price'];
+            $propertyData['bedroom'] = $_POST['bedroom'];
+            $propertyData['toilet'] = $_POST['toilet'];
+            $propertyData['kitchen'] = $_POST['kitchen'];
 
-        //     $property = new Property();
-        //     $property->load($propertyData);
-        //     $errors = $property->validate();
+            $property = new Property();
+            $property->load($propertyData);
+            $errors = $property->validate();
 
-        //     if(empty($errors)){
-        //         header('location: /admin/property');
-        //     }
-        // }
+            if(empty($errors)){
+                header('location: /admin/property');
+            }
+        }
 
-        // $router->renderView('property/update', [
-        //     'property' => $propertyData,
-        //     'errors' => $errors
-        // ]);
+        $router->renderView('property/update', [
+            'property' => $propertyData,
+            'errors' => $errors
+        ]);
 
     }
 
-    public function remove()
+    public function remove(Router $router)
     {
-        
+        $id = $_POST['id'] ?? null;
+        if(!$id){
+            header('location: /admin/property');
+            exit;
+        }
+
+        $router->db->removeProperty($id);
+        header('location: /admin/property');
     }
 
 }

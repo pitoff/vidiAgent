@@ -25,18 +25,18 @@
         					
                             <?php if(loggedIn()):?>
         					<div class="tooltip-wrap d-flex">
-        						<a href="/admin/updateproperty?id=<?= $property->id; ?>" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Edit">
+        						<a href="/admin/updateproperty?id=<?php echo $property->id?>" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Edit">
         							<span class="ion-ios-book"><i class="sr-only">Edit</i></span>
         						</a>
                                 <a href="#" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="View">
         							<span class="ion-ios-eye"><i class="sr-only">View</i></span>
         						</a>
 
-                                <form method="POST", action="/admin/removeproperty">
-                                    <a type=submit class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Remove">
-                                        <input type="hidden" value="<?= $property->id;?>">
+                                <form method="POST" action="/admin/removeproperty">
+                                    <button type="submit" class="btn"><a href="" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Remove">
+                                        <input type="hidden" name="id" value="<?php echo $property->id;?>">
                                         <span class="ion-ios-trash"><i class="sr-only">Remove</i></span>
-                                    </a>
+                                    </a></button>
                                 </form>
         					</div>
                             <?php else:?>

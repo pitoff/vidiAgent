@@ -39,7 +39,6 @@ class Database
         $statement = $this->pdo->prepare('SELECT * FROM properties ORDER BY id DESC');
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_OBJ);
-
     }
 
     public function getPropertyById($id)
@@ -47,7 +46,7 @@ class Database
         $statement = $this->pdo->prepare('SELECT * FROM properties WHERE id = :id');
         $statement->bindValue(':id', $id);
         $statement->execute();
-        return $statement->fetch(PDO::FETCH_OBJ);
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     public function addProperty(Property $property)
@@ -70,13 +69,43 @@ class Database
         $statement->execute();
     }
 
-    public function updateProperty()
+    public function updateProperty(Property $property)
     {
+        $statement = $this->pdo->prepare("UPDATE properties SET property = :property,
+        p_type = :p_type,
+        p_for = :p_for,
+        state = :state,
+        local_govt = :local_govt, 
+        address = :address,
+        p_type = :p_type,
+        image = :image, 
+        description = :description,
+        price = :price,
+        bedroom = :bedroom,
+        toilet = :toilet,
+        kitchen = :kitchen WHERE id = :id");
 
+        $statement->bindValue(':property', $property->name);
+        $statement->bindValue(':p_type', $property->type);
+        $statement->bindValue(':p_for', $property->for);
+        $statement->bindValue(':state', $property->state);
+        $statement->bindValue(':local_govt', $property->local_govt);
+        $statement->bindValue(':address', $property->address);
+        $statement->bindValue(':image', $property->imagePath);
+        $statement->bindValue(':description', $property->description);
+        $statement->bindValue(':price', $property->price);
+        $statement->bindValue(':bedroom', $property->bedroom);
+        $statement->bindValue(':toilet', $property->toilet);
+        $statement->bindValue(':kitchen', $property->kitchen);
+        $statement->bindValue(':id', $property->id);
+
+        $statement->execute();
     }
 
-    public function removeProperty()
+    public function removeProperty($id)
     {
-
+        $statement = $this->pdo->prepare('DELETE FROM properties WHERE id = :id');
+        $statement->bindValue(':id', $id);
+        $statement->execute();
     }
 }

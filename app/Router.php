@@ -28,7 +28,7 @@ class Router{
         $currentUrl = $_SERVER['REQUEST_URI'] ?? '/';
         $strpos = strpos($currentUrl, '?');
 
-        if($strpos === true){
+        if($strpos !== false){
             
             $currentUrl = substr($currentUrl, 0, $strpos);
 

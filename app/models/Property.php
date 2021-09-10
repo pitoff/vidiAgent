@@ -29,7 +29,7 @@ class Property{
         $this->for = $data['for'];
         $this->name = $data['name'];
         $this->state = $data['state'];
-        $this->local_govt = $data['local_govt'];
+        $this->local_govt = $data['local_govt'] ?? '';
         $this->address = $data['address'];
         $this->description = $data['description'];
         $this->price = $data['price'];
@@ -51,7 +51,7 @@ class Property{
             $errors[] = "for what is required";
         }
         if(!$this->name){
-            $errors[] = "name is required";
+            $errors[] = "property is required";
         }
         if(!$this->state){
             $errors[] = "state is required";
