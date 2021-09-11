@@ -2,13 +2,25 @@
 
 namespace app\controllers;
 
+use app\models\Property;
 use app\Router;
 
 class HomeController{
 
     public function index(Router $router)
     {
-        $router->renderView('home/index');
+        $state = $_GET['state'] ?? '';
+        $type = $_GET['type'] ?? '';
+        $for = $_GET['for'] ?? '';
+
+        $propertySearch = $router->db->getSearchProperty($state, $type, $for);
+       
+        $router->renderView('home/index', [
+            'properties' => $propertySearch,
+            'state' => $state,
+            'type' => $type,
+            'for' => $for
+        ]);
     }
 
     public function about(Router $router)

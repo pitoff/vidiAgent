@@ -9,7 +9,7 @@
     <?php endif; ?>
   </div>
 
-  <?php if ($property['image']): ?>
+  <?php if ($property['image']) : ?>
     <img src="/<?php echo $property['image'] ?>" class="img d-flex align-items-center justify-content-center">
   <?php endif; ?>
 
@@ -19,9 +19,13 @@
 
   <div class="form-group">Property type:
     <select name="type" id="" class="form-control">
-      <option value="Land">Land</option>
-      <option value="House">House</option>
-      <option value="Hotel">Hotel</option>
+      <option value="">Type</option>
+      <option value="commercial">Commercial</option>
+      <option value="office">Office</option>
+      <option value="residential">Residential</option>
+      <option value="villa">Villa</option>
+      <option value="land">Land</option>
+      <option value="apartment">Apartment</option>
     </select>
   </div>
 
@@ -33,7 +37,7 @@
   </div>
 
   <div class="form-group">
-    <input type="name" name="name" class="form-control" value="<?= $property['property'] ?? ''?>" placeholder="Property Name">
+    <input type="name" name="name" class="form-control" value="<?= $property['property'] ?? '' ?>" placeholder="Property Name">
   </div>
   <div class="form-group">
     <select name="state" id="state" value="" onchange="toggleLGA(this)" class="form-control">

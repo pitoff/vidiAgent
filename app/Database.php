@@ -41,6 +41,20 @@ class Database
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function getSearchProperty($state='', $type='', $for='')
+    {
+        if ($state && $type && $for) {
+            $statement = $this->pdo->prepare('SELECT * FROM properties WHERE state like :state AND p_type like :p_type AND p_for like :p_for ORDER BY created_at DESC');
+            $statement->bindValue(":state", "%$state%");
+            $statement->bindValue(":p_type", "%$type%");
+            $statement->bindValue(":p_for", "%$for%");
+        } else {
+            $statement = $this->pdo->prepare('SELECT * FROM properties ORDER BY created_at DESC LIMIT 6');
+        }
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getPropertyById($id)
     {
         $statement = $this->pdo->prepare('SELECT * FROM properties WHERE id = :id');
